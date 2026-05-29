@@ -1,5 +1,6 @@
 from django import forms
 from .models import Livro, Usuario, Emprestimo
+from django.contrib.auth.models import User
 
 class LivroForm(forms.ModelForm):
     class Meta:

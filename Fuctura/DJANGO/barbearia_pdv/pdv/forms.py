@@ -1,5 +1,6 @@
 from django import forms
 from .models import Cliente, Servico, Agendamento
+from django.contrib.auth.models import User
 
 class ClienteForm(forms.ModelForm):
     class Meta:
