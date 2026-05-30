@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'pdv/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Lista de Serviços</h2>
+    <a href="{% url 'criar_servico' %}" class="btn">Criar Serviço</a>
+</div>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Preço</th>
+    </tr>
+    {% for servico in servicos %}
+    <tr>
+        <td>{{ servico.nome }}</td>
+        <td>{{ servico.preco }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -4,7 +4,7 @@ body {
 }
 
 header {
-    background-color: blue;
+    background-color: #5e5be9;
     color: white;
     padding: 10px 20px;
     position: fixed;
@@ -27,7 +27,7 @@ nav a {
 }
 
 nav a:hover {
-    background-color: dodgerblue;
+    background-color: #3c39fa;
 }
 
 main {
@@ -40,7 +40,7 @@ main {
     width: 200px;
     margin: 20px auto;
     padding: 10px;
-    background-color: forestgreen;
+    background-color: #28a745;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -49,7 +49,7 @@ main {
 }
 
 .btn:hover {
-    background-color: greenyellow;
+    background-color: #218838;
 }
 
 .titulo {
@@ -63,5 +63,5 @@ main {
     margin: 0;
     flex-grow: 1;
     text-align: center;
-
 }
+
