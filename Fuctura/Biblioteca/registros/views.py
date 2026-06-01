@@ -43,7 +43,7 @@ def cadastrar_livro(request):
             return redirect('livros')
         else:
             form = LivroForm()
-    return render(request, 'registros/cadastrar_livros.html', context={'form': form})
+    return render(request, 'registros/cadastrar_livro.html', context={'form': form})
 
 @login_required
 def visualizar_livros(request):
