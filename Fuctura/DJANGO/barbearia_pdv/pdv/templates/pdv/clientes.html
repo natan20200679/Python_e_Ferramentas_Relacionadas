@@ -1,0 +1,25 @@
+{% extends 'pdv/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Visualização de Clientes</h2>
+    <a href="{% url 'criar_cliente' %}" class="btn">Criar Cliente</a>
+</div>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Email</th>
+    </tr>
+    {% for cliente in clientes %}
+    <tr>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.telefone }}</td>
+        <td>{{ cliente.email }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
