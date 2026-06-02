@@ -54,7 +54,7 @@ def excluir_cliente(request):
             return redirect('clientes')
         else:
             form = ClienteForm()
-    return render(request, 'pdv/excluir_cliente.html')
+    return render(request, 'pdv/excluir_cliente.html', {'form': form})
 
 @login_required
 def clientes_view(request):
