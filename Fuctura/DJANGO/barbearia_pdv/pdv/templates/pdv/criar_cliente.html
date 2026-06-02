@@ -1,25 +1,16 @@
 {% extends 'pdv/base.html' %}
 {% load static %}
 {% block extra_styles %}
-<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+<link rel="stylesheet" href="{% static 'formularios/formularios.css' %}">
 {% endblock %}
 {% block content %}
-<div class="titulo">
-    <h2>Lista de Clientes</h2>
-    <a href="{% url 'criar_cliente' %}" class="btn">Criar Cliente</a>
-</div>
-<table>
-    <tr>
-        <th>Cliente</th>
-        <th>Telefone</th>
-        <th>Email</th>
-    </tr>
-    {% for cliente in clientes %}
-    <tr>
-        <td>{{ cliente.nome }}</td>
-        <td>{{ cliente.telefone }}</td>
-        <td>{{ cliente.email }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<form method="POST">
+    <div class="titulo">
+        <h2>Criar Cliente</h2>
+        <a href="{% url 'clientes' %}" class="btn">Voltar</a>
+    </div>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+</form>
 {% endblock %}
