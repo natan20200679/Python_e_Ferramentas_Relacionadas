@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.views.decorators.http import require_POST
 from .models import Cliente, Servico, Agendamento
 from .forms import ClienteForm, ServicoForm, AgendamentoForm
 from django.contrib.auth.decorators import login_required
 
 def login_view(request):
+    error_message = None
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -13,7 +15,9 @@ def login_view(request):
         if user is not None:
             auth_login(request, user)
             return redirect('dashboard')
-    return render(request, 'pdv/login.html')
+        else:
+            error_message = "Usuário ou senha inválido!"
+    return render(request, 'pdv/login.html', {'error_message': error_message})
 
 def logout_view(request):
     logout(request)
@@ -23,14 +27,13 @@ def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
-            user.save()
+            form.save()
             return redirect('login')
         else:
             form = UserCreationForm()
-    return render(request, 'pdv/register.html', {'form': form})
+        return render(request, 'pdv/register.html', {'form': form})
 
+@login_required()
 def dashboard(request):
     return render(request, 'pdv/dashboard.html')
 
@@ -43,18 +46,13 @@ def criar_cliente(request):
             return redirect('clientes')
         else:
             form = ClienteForm()
-    return render(request, 'pdv/criar_cliente.html', {'form': form})
+        return render(request, 'pdv/criar_cliente.html', {'form': form})
 
 @login_required
-def excluir_cliente(request):
-    if request.method == 'DELETE':
-        form = ClienteForm(request.DELETE)
-        if form.is_valid():
-            form.save()
-            return redirect('clientes')
-        else:
-            form = ClienteForm()
-    return render(request, 'pdv/excluir_cliente.html', {'form': form})
+@require_POST
+def excluir_cliente(request, cliente):
+    cliente.delete()
+    return redirect('clientes')
 
 @login_required
 def clientes_view(request):
@@ -96,7 +94,7 @@ def criar_servico(request):
 @login_required
 def relatorios_view(request):
     agendamentos = Agendamento.objects.all()
-    total_vendas = sum(agendamento.servico.preco for agendamento in agendamentos)
+    total_vendas = sum(agendamento.servico.preco for agendamento in agendamentos if agendamento.servico)
     return render(request, 'pdv/relatorios.html',
                   {'agendamentos': agendamentos,
                    'total_vendas': total_vendas})

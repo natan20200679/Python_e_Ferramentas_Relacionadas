@@ -4,13 +4,8 @@
 <link rel="stylesheet" href="{% static 'formularios/formularios.css' %}">
 {% endblock %}
 {% block content %}
-<form method="DELETE">
-    <div class="titulo">
-        <h2>Excluir Cliente</h2>
-        <a href="{% url 'clientes' %}" class="btn">Voltar</a>
-    </div>
+<form action="{% url 'excluir_cliente' cliente %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
+    <button type="submit">Excluir</button>
 </form>
 {% endblock %}
