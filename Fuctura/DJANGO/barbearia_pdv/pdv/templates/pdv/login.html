@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Configuração de caracteres -->
     <meta charset="UTF-8">
-    <!-- Responsividade -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDV Barbearia</title>
-    <!-- Carrega arquivos estáticos (CSS, JS, imagens) -->
     {% load static %}
-    <!-- CSS global do sistema -->
     <link rel="stylesheet" type="text/css" href="{% static 'global/style.css' %}">
-    <!-- Bloco para CSS específico de cada página -->
     {% block extra_styles %}{% endblock %}
 </head>
 <body>
@@ -29,7 +24,6 @@
         {% endwith %}
     </header>
     <main>
-        <!-- Aqui cada página insere seu conteúdo -->
         {% block content %}{% endblock %}
     </main>
 </body>
