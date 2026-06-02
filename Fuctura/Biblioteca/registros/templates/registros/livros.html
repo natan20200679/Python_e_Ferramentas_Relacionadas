@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'pdv/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Relação dos Livros</h2>
+    <a href="{% url 'cadastrar_livro' %}" class="btn">Cadastrar Livro</a>
+</div>
+<table>
+    <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Descrição</th>
+        <th>Ano</th>
+    </tr>
+    {% for livro in livros %}
+    <tr>
+        <td>{{ servico.titulo }}</td>
+        <td>{{ servico.autor }}</td>
+        <td>{{ servico.descricao }}</td>
+        <td>{{ servico.ano }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

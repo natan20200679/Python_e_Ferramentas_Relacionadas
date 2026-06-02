@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'registros/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'formularios/formularios.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Cadastrar Livro</h2>
+    <a href="{% url 'cadastrar_livro' %}" class="btn">Cadastrar Livro</a>
+</div>
+<table>
+    <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Descrição</th>
+        <th>Ano</th>
+    </tr>
+    {% for livro in livros %}
+    <tr>
+        <td>{{ livro.titulo }}</td>
+        <td>{{ livro.autor }}</td>
+        <td>{{ livro.descricao }}</td>
+        <td>{{ livro.ano }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'pdv/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Relatórios</h2>
+    <h2>Total de Empréstimos: {{ total_emprestimos }}</h2>
+</div>
+<table>
+    <tr>
+        <th>Livro</th>
+        <th>Usuário</th>
+        <th>Data do Empréstimo</th>
+    </tr>
+    {% for emprestimo in emprestimos %}
+    <tr>
+        <td>{{ emprestimo.livro.titulo }}</td>
+        <td>{{ emprestimo.livro.autor }}</td>
+        <td>{{ emprestimo.usuario.nome }}</td>
+        <td>{{ emprestimo.usuario.id }}</td>
+        <td>{{ emprestimo.data_emprestimo|date:"dd/mm/YYYY" }}</td>
+        <td>{{ emprestimo.data_devolucao|date:"dd/mm/YYYY" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
