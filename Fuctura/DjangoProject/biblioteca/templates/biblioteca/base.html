@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Natan</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'global/style.css' %}">
+    {% block extra_styles %}{% endblock %}
+</head>
+<body>
+    <header>
+        {% with excluded_routes='/login/,/register/' %}
+            {% if request.path not in excluded_routes %}
+                <nav>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                    <a href="{% url 'livros' %}">Livros</a>
+                    <a href="{% url 'emprestimos' %}">Empréstimos</a>
+                    <a href="{% url 'usuarios' %}">Usuários</a>
+                    <a href="{% url 'relatorios' %}">Relatórios</a>
+                    <a href="{% url 'logout' %}">Sair</a>
+                </nav>
+            {% endif %}
+        {% endwith %}
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
