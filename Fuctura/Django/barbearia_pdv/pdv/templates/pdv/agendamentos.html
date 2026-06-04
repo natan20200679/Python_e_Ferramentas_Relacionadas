@@ -1,0 +1,29 @@
+{% extends 'pdv/base.html' %} <!-- Herda estrutura base -->
+{% load static %}
+{% block extra_styles %}
+<!-- CSS específico de tabelas -->
+<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Lista de Agendamentos</h2>
+    <!-- Botão para criar novo agendamento -->
+    <a href="{% url 'criar_agendamento' %}" class="btn">Criar Agendamento</a>
+</div>
+<table>
+    <tr>
+        <th>Cliente</th>
+        <th>Serviço</th>
+        <th>Data e Hora</th>
+    </tr>
+    <!-- Loop vindo da view -->
+    {% for agendamento in agendamentos %}
+    <tr>
+        <td>{{ agendamento.cliente.nome }}</td>
+        <td>{{ agendamento.servico.nome }}</td>
+        <!-- Formata a data -->
+        <td>{{ agendamento.data_hora|date:"d/m/Y" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

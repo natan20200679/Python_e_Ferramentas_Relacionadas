@@ -1,0 +1,31 @@
+{% extends 'pdv/base.html' %}
+
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'login/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Cadastro</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Formulário automático -->
+        {{ form.as_p }}
+
+        <p>
+            Já tem conta?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+
+        <button type="submit" class="btn">Registrar</button>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+/* Estilizando o body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Fonte padrão */
+}
+
+/* Estilizando o header */
+header {
+    background-color: #5e5be9; /* Cor de fundo da navbar */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    position: fixed; /* Fixa a navbar no topo */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    right: 0; /* Alinha à direita */
+    z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
+}
+
+/* Estilizando a navbar */
+nav {
+    display: flex; /* Usando flexbox para alinhar os itens */
+    justify-content: space-around; /* Espaça os itens uniformemente */
+}
+
+/* Estilizando os links da navbar */
+nav a {
+    color: white; /* Cor do texto dos links */
+    text-decoration: none; /* Remove o sublinhado */
+    padding: 10px 15px; /* Espaçamento interno dos links */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+/* Efeito ao passar o mouse sobre os links */
+nav a:hover {
+    background-color: #3c39fa; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilizando o main */
+main {
+    margin-top: 60px; /* Espaço acima do conteúdo principal para não ficar atrás da navbar */
+    padding: 20px; /* Espaçamento interno do conteúdo principal */
+}
+
+/* Estilizando o botão */
+.btn {
+    display: block; /* Faz o botão ocupar toda a largura disponível */
+    width: 200px; /* Largura do botão */
+    margin: 20px auto; /* Centraliza o botão */
+    padding: 10px; /* Espaçamento interno do botão */
+    background-color: #28a745; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    text-align: center; /* Centraliza o texto do botão */
+    text-decoration: none; /* Remove o sublinhado */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.btn:hover {
+    background-color: #218838; /* Cor de fundo ao passar o mouse */
+}
+
+.titulo {
+    display: flex; /* Usar flexbox para layout */
+    justify-content: space-between; /* Espaço entre os itens */
+    align-items: center; /* Alinha verticalmente os itens ao centro */
+    padding: 10px; /* Espaçamento interno */
+}
+
+.titulo h2 {
+    margin: 0; /* Remove a margem padrão do h2 */
+    flex-grow: 1; /* Faz o h2 ocupar o espaço disponível */
+    text-align: center; /* Centraliza o texto */
+}

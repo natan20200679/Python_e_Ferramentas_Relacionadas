@@ -1,0 +1,34 @@
+{% extends 'pdv/base.html' %}
+
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="titulo">
+    <h2>Relatórios</h2>
+
+    <!-- Valor vindo da view -->
+    <h2>Total de Vendas: R$ {{ total_vendas }}</h2>
+</div>
+
+<table>
+    <tr>
+        <th>Cliente</th>
+        <th>Serviço</th>
+        <th>Data</th>
+    </tr>
+
+    {% for agendamento in agendamentos %}
+    <tr>
+        <td>{{ agendamento.cliente.nome }}</td>
+        <td>{{ agendamento.servico.nome }}</td>
+        <td>{{ agendamento.data_hora|date:"d/m/Y" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

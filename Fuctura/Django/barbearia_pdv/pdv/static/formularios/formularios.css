@@ -1,0 +1,57 @@
+/* Estilo geral do formulário */
+form {
+    padding: 20px 60px 60px 40px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda do formulário */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Cor de fundo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Estilo dos campos do formulário */
+form input[type="text"],
+form input[type="number"],
+form input[type="tel"],
+form input[type="date"],
+form input[type="email"] {
+    width: 100%; /* Largura total */
+    padding: 10px; /* Espaçamento interno */
+    margin: 10px 0; /* Margem entre os campos */
+    border: 1px solid #ccc; /* Borda dos campos */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+select {
+    width: 101%; /* Largura total */
+    padding: 10px; /* Espaçamento interno */
+    margin: 10px 0; /* Margem entre os campos */
+    border: 1px solid #ccc; /* Borda dos campos */
+    border-radius: 4px; /* Bordas arredondadas */
+  }
+
+/* Estilo do botão de submit */
+form button {
+    background-color: #28a745; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    padding: 10px 15px; /* Espaçamento interno do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+/* Estilo do botão ao passar o mouse */
+form button:hover {
+    background-color: #218838; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilo do link "Voltar para Clientes" */
+a {
+    display: inline-block; /* Para aplicar padding */
+    margin-top: 20px; /* Margem acima do link */
+    color: #007bff; /* Cor do link */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+a:hover {
+    text-decoration: underline; /* Sublinha ao passar o mouse */
+}
