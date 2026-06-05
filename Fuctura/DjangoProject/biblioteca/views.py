@@ -1,7 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from django.contrib.auth import login as auth_login, authenticate, logout
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login as auth_login, authenticate, logout
 from .models import Livro, Usuario, Emprestimo
 from .forms import LivroForm, UsuarioForm, EmprestimoForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
@@ -42,41 +41,14 @@ def cadastrar_livro(request):
         if form.is_valid():
             form.save()
             return redirect('livros')
-        else:
-            form = LivroForm()
+    else:
+        form = LivroForm()
     return render(request, 'biblioteca/cadastrar_livro.html', context={'form': form})
 
 @login_required
 def visualizar_livros(request):
     livros = Livro.objects.all()
-    return render(request, 'biblioteca/livros.html')
-
-@login_required
-def registrar_emprestimo(request):
-    if request.method == 'POST':
-        form = EmprestimoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('emprestimos')
-    else:
-        form = EmprestimoForm()
-    return render(request, 'biblioteca/registrar_emprestimo.html', {'form': form})
-
-@login_required
-def encerrar_emprestimo(request):
-    if request.method == 'DELETE':
-        form = EmprestimoForm(request.DELETE)
-        if form.is_valid():
-            form.save()
-            return redirect('emprestimos')
-    else:
-        form = EmprestimoForm()
-    return render(request, 'biblioteca/encerrar_emprestimo.html', {'form': form})
-
-@login_required
-def visualizar_emprestimos(request):
-    emprestimos = Emprestimo.objects.all()
-    return render(request, 'biblioteca/emprestimos.html', {'emprestimos': emprestimos})
+    return render(request, 'biblioteca/livros.html', {'livros': livros})
 
 @login_required
 def visualizar_usuarios(request):
@@ -93,6 +65,39 @@ def criar_usuario(request):
     else:
         form = UsuarioForm()
     return render(request, 'biblioteca/criar_usuario.html', {'form': form})
+
+@login_required
+def excluir_usuario(request, usuario):
+    usuario = get_object_or_404(Usuario, id=usuario)
+    if request.method == 'POST':
+        usuario.delete()
+        return redirect('usuarios')
+    return render(request, 'biblioteca/usuarios.html', {'usuario': usuario})
+
+@login_required
+def atualizar_usuarios(request):
+    if request.method == "POST":
+        usuario_id = request.POST.getlist(key='id')
+        User.objects.filter(names=usuario_id).update(is_active=True)
+    usuarios = User.objects.all()
+    return render(request, "biblioteca/usuarios.html", {"usuarios": usuarios})
+
+@login_required
+def registrar_emprestimo(request):
+    if request.method == 'POST':
+        form = EmprestimoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('emprestimos')
+    else:
+        form = EmprestimoForm()
+    return render(request, 'biblioteca/registrar_emprestimo.html', {'form': form})
+
+@login_required
+def visualizar_emprestimos(request):
+    emprestimos = Emprestimo.objects.all()
+    return render(request, 'biblioteca/emprestimos.html', {'emprestimos': emprestimos})
+
 
 @login_required
 def visualizar_relatorios(request):

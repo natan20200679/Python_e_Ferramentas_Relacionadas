@@ -1,27 +1,18 @@
 {% extends 'biblioteca/base.html' %}
+
 {% load static %}
 {% block extra_styles %}
-<link rel="stylesheet" href="{% static 'formularios/formularios.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'formularios/formularios.css' %}">
 {% endblock %}
+
 {% block content %}
-<div class="titulo">
-    <h2>Lista de Usuários</h2>
-    <a href="{% url 'criar_usuario' %}" class="btn">Criar Usuario</a>
-</div>
-<table>
-    <tr>
-        <th>Nome</th>
-        <th>Id</th>
-        <th>Email</th>
-        <th>Telefone</th>
-    </tr>
-    {% for usuario in usuarios %}
-    <tr>
-        <td>{{ usuario.nome }}</td>
-        <td>{{ usuario.id }}</td>
-        <td>{{ usuario.telefone }}</td>
-        <td>{{ usuario.email }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<form method="post">
+    <div class="titulo">
+        <h2>Criar Usuário</h2>
+        <a href="{% url 'usuarios' %}" class="btn">Voltar</a>
+    </div>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+</form>
 {% endblock %}

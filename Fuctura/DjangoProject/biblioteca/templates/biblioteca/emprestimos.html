@@ -1,4 +1,4 @@
-{% extends 'pdv/base.html' %}
+{% extends 'biblioteca/base.html' %}
 {% load static %}
 {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
@@ -10,6 +10,7 @@
 </div>
 <table>
     <tr>
+        <th>Selecionar</th>
         <th>Livro</th>
         <th>Usuário</th>
         <th>ID Usuário</th>
@@ -18,6 +19,9 @@
     </tr>
     {% for emprestimo in emprestimos %}
     <tr>
+        <td>
+            <input type="checkbox">
+        </td>
         <td>{{ emprestimo.livro.titulo }}</td>
         <td>{{ emprestimo.usuario.nome }}</td>
         <td>{{ emprestimo.usuario.id }}</td>
