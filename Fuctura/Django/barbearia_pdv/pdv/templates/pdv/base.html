@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Configuração de caracteres -->
+    <meta charset="UTF-8">
+    <!-- Responsividade -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDV Barbearia</title>
+    <!-- Carrega arquivos estáticos (CSS, JS, imagens) -->
+    {% load static %}
+    <!-- CSS global do sistema -->
+    <link rel="stylesheet" type="text/css" href="{% static 'global/style.css' %}">
+    <!-- Bloco para CSS específico de cada página -->
+    {% block extra_styles %}{% endblock %}
+</head>
+<body>
+    <header>
+        {% with excluded_routes='/login/,/register/' %}
+            {% if request.path not in excluded_routes %}
+                <nav>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                    <a href="{% url 'clientes' %}">Clientes</a>
+                    <a href="{% url 'servicos' %}">Servicos</a>
+                    <a href="{% url 'agendamentos' %}">Agendamentos</a>
+                    <a href="{% url 'relatorios' %}">Relatórios</a>
+                    <a href="{% url 'logout' %}">Sair</a>
+                </nav> 
+            {% endif %}
+        {% endwith %}
+    </header>
+    <main>
+        <!-- Aqui cada página insere seu conteúdo -->
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

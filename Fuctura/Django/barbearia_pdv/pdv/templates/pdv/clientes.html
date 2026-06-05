@@ -1,0 +1,34 @@
+{% extends 'pdv/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Lista de Clientes</h2>
+    <a href="{% url 'criar_cliente' %}" class="btn">Criar Cliente</a>
+    <a href="{% url 'excluir_cliente' cliente.nome %}" class="btn">Excluir Cliente</a>
+</div>
+    <form method="post" action="{% url 'excluir_cliente' %}">
+    {% csrf_token %}
+        <table>
+            <tr>
+                <th>Seleção</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+            </tr>
+            {% for cliente in clientes %}
+            <tr>
+                <td>
+                    <input type="checkbox" name="clientes_selecionados" value="{{ cliente.id }}">
+                </td>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.telefone }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit" class="btn btn-danger">Excluir Selecionados</button>
+    </form>
+{% endblock %}

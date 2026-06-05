@@ -1,0 +1,20 @@
+{% extends 'pdv/base.html' %}
+
+{% load static %} 
+{% block extra_styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'formularios/formularios.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    <div class="titulo">
+        <h2>Criar Serviço</h2>
+        <a href="{% url 'servicos' %}" class="btn">Voltar</a>
+    </div>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}
+

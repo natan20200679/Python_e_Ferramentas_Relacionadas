@@ -1,0 +1,43 @@
+/* Estilizando o body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    background-color: #f4f4f4; /* Cor de fundo da página */
+}
+
+/* Estilizando o título */
+h2 {
+    text-align: center; /* Centraliza o título */
+    margin-top: 20px; /* Espaçamento acima do título */
+}
+
+/* Estilizando o parágrafo */
+p {
+    text-align: center; /* Centraliza o texto */
+    font-size: 18px; /* Tamanho da fonte */
+}
+
+/* Estilizando a tabela */
+table {
+    width: 100%; /* A tabela ocupa 100% da largura da página */
+    border-collapse: collapse; /* Remove espaços entre as bordas das células */
+    margin: 20px 0; /* Espaçamento acima e abaixo da tabela */
+}
+
+/* Estilizando as células da tabela */
+th, td {
+    border: 1px solid #ddd; /* Borda das células */
+    padding: 12px; /* Espaçamento interno das células */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+/* Estilizando o cabeçalho da tabela */
+th {
+    background-color: #333; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto do cabeçalho */
+}
+
+/* Efeito ao passar o mouse sobre as linhas da tabela */
+tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+}
