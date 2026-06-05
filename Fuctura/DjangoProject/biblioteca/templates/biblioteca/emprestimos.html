@@ -1,0 +1,33 @@
+{% extends 'biblioteca/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Relação dos Empréstimos</h2>
+    <a href="{% url 'registrar_emprestimo' %}" class="btn">Registrar Empréstimo</a>
+</div>
+<table>
+    <tr>
+        <th>Selecionar</th>
+        <th>Livro</th>
+        <th>Usuário</th>
+        <th>ID Usuário</th>
+        <th>Data de Empréstimo</th>
+        <th>Data de Devolução</th>
+    </tr>
+    {% for emprestimo in emprestimos %}
+    <tr>
+        <td>
+            <input type="checkbox">
+        </td>
+        <td>{{ emprestimo.livro.titulo }}</td>
+        <td>{{ emprestimo.usuario.nome }}</td>
+        <td>{{ emprestimo.usuario.id }}</td>
+        <td>{{ emprestimo.data_emprestimo|date:"dd/mm/YYYY" }}</td>
+        <td>{{ emprestimo.data_devolucao|date:"dd/mm/YYYY" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

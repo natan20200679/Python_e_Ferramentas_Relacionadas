@@ -1,0 +1,31 @@
+{% extends 'biblioteca/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Relação dos Livros</h2>
+    <a href="{% url 'cadastrar_livro' %}" class="btn">Cadastrar Livro</a>
+</div>
+<table>
+    <tr>
+        <th>Seleção</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Descrição</th>
+        <th>Ano</th>
+    </tr>
+    {% for livro in livros %}
+    <tr>
+        <td>
+            <input type="checkbox" name="livro" value="{{ livro.nome }}">
+        </td>
+        <td>{{ livro.titulo }}</td>
+        <td>{{ livro.autor }}</td>
+        <td>{{ livro.descricao }}</td>
+        <td>{{ livro.ano }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

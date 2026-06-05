@@ -1,0 +1,39 @@
+{% extends 'biblioteca/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+{% endblock %}
+{% block content %}
+<div class="titulo">
+    <h2>Lista de Usuários</h2>
+    <a href="{% url 'criar_usuario' %}" class="btn">Cadastrar Usuário</a>
+</div>
+<form method="post" action="{% url 'excluir_usuario' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>Seleção</th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ação</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>
+                <input type="checkbox" name="usuario" value="{{ usuario.id }}">
+            </td>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.telefone }}</td>
+            <td>
+                <button type="submit" class="btn">Excluir</button>
+                <button type="submit" class="btn">Editar</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+{% endblock %}
